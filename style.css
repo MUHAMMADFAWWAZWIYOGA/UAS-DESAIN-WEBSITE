@@ -1,0 +1,179 @@
+/* Reset dan gaya dasar */
+body, html {
+    margin: 0;
+    padding: 0;
+    overflow: hidden; /* Hilangkan scrolling */
+    height: 100%;
+    font-family: Arial, sans-serif;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    position: relative;
+    background: linear-gradient(to right, #152758 , #152758 );
+    color: #fff;
+    text-align: center;
+}
+
+.section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    transition: opacity 0.5s ease, visibility 0.5s ease;
+    background: inherit;
+}
+
+.hidden {
+    visibility: hidden;
+    opacity: 0;
+    pointer-events: none;
+}
+nav ul {
+    list-style: none; /* Hilangkan bullet pada list */
+    padding: 0;
+    margin: 20px 0;
+    display: flex;
+    gap: 15px; /* Jarak antar tombol */
+}
+
+nav ul li {
+    display: inline-block;
+}
+
+
+
+nav ul li button:hover {
+    background: #1B5E20;
+}
+
+.button {
+
+    display: inline-block;
+    padding: 10px 20px; /* Atur ukuran tombol */
+    font-family: 'Exo 2', sans-serif;
+    font-size: 1.2rem; /* Ukuran teks */
+    font-weight: 700; /* Berat teks */
+    color: #ffffff; /* Warna teks */
+    background-color: #007bff; /* Warna latar belakang tombol */
+    border: none;
+    border-radius: 8px; /* Membuat sudut membulat */
+    text-decoration: none; /* Hilangkan garis bawah pada link */
+    text-align: center; /* Teks di tengah */
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3); /* Efek bayangan */
+    transition: background-color 0.3s ease, transform 0.2s ease; /* Animasi efek hover */
+}
+
+.button:hover {
+    background-color: #0056b3; /* Warna lebih gelap saat hover */
+    transform: scale(1.05); /* Sedikit perbesar tombol */
+}
+
+
+
+/* Heading utama */
+h1 {
+    font-family: 'Exo 2', sans-serif; /* Gunakan Exo 2 untuk heading */
+    font-size: 3.5rem; /* Ukuran besar untuk menonjolkan judul */
+    font-weight: 700; /* Berat font untuk kesan tegas */
+    text-transform: uppercase; /* Semua huruf kapital untuk kesan kuat */
+    letter-spacing: 1.5px; /* Spasi antar huruf untuk elegansi */
+    color: #ffffff; /* Warna putih agar kontras dengan latar belakang */
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7); /* Efek bayangan untuk kesan modern */
+    margin-bottom: 20px;
+}
+
+/* Deskripsi pendukung */
+h1 {
+    font-family: 'Exo 2', sans-serif; /* Gunakan Exo 2 untuk heading */
+    font-size: 3.5rem; /* Ukuran besar untuk menonjolkan judul */
+    font-weight: 700; /* Berat font untuk kesan tegas */
+    text-transform: uppercase; /* Semua huruf kapital untuk kesan kuat */
+    letter-spacing: 1.5px; /* Spasi antar huruf untuk elegansi */
+    color: #ffffff; /* Warna putih agar kontras dengan latar belakang */
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7); /* Efek bayangan untuk kesan modern */
+    margin-bottom: 20px;
+}
+
+/* Tombol navigasi */
+nav ul li button {
+    font-family: 'Raleway', sans-serif; /* Font modern untuk navigasi */
+    font-size: 1.1rem;
+    font-weight: 500;
+    text-transform: uppercase; /* Semua huruf kapital untuk profesionalitas */
+    background: rgba(255, 255, 255, 0.8); /* Warna transparan mewah */
+    color: #4CAF50;
+    padding: 12px 25px;
+    border-radius: 5px;
+    border: 2px solid #fff;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+nav ul li button:hover {
+    background: #fff; /* Berubah menjadi putih solid */
+    color: #4CAF50;
+}
+
+/* Gaya teks lain */
+h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 20px;
+    color: #fff;
+}
+
+ul {
+    font-family: 'Lora', serif;
+    font-size: 1.2rem;
+    color: #fff;
+}
+
+
+/* Gaya untuk container tombol */
+.buttons-container {
+    position: relative;
+    width: 500px;
+    height: 500px;
+    margin: 0 auto;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Gaya untuk tombol */
+.circular-button {
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    font-family: 'Exo 2', sans-serif;
+    font-size: 1rem;
+    font-weight: bold;
+    color: #ffffff;
+    background-color: #007bff;
+    border: 2px solid #ffffff;
+    border-radius: 50%;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    cursor: pointer;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+/* Hover efek tombol */
+.circular-button:hover {
+    background-color: #0056b3;
+    transform: scale(1.1);
+}

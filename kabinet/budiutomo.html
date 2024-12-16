@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kabinet Budiutomo</title>
+    <style>
+        body {
+            margin: 0;
+            background: #152758;
+            font-family: 'Arial', sans-serif;
+            color: white;
+            overflow: hidden;
+        }
+
+        header {
+            background: #152758;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            height: 100vh;
+            padding: 20px;
+        }
+
+        section {
+            margin: 20px 0;
+            width: 80%;
+            max-width: 1200px;
+        }
+
+        .card {
+            background: #00888B;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            margin: 10px;
+            padding: 20px;
+            color: white;
+            display: inline-block;
+            width: calc(25% - 20px);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+        }
+
+        .grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .card img {
+            width: 100%;
+            border-radius: 10px;
+            margin-bottom: 10px;
+        }
+
+        h2 {
+            color: #00888B;
+            margin-bottom: 20px;
+            font-size: 1.8rem;
+        }
+
+        footer {
+            text-align: center;
+            padding: 10px;
+            background: #152758;
+            color: white;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        section {
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        .header-animated {
+            animation: fadeIn 1.5s ease-in-out;
+        }
+
+        .documentation img {
+            width: 100px;
+            height: 100px;
+            border-radius: 10px;
+            margin: 5px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease;
+        }
+
+        .documentation img:hover {
+            transform: scale(1.2);
+        }
+
+        @media (max-width: 768px) {
+            .card {
+                width: calc(50% - 20px);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .card {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header-animated">
+        <h1>Kabinet Budiutomo</h1>
+        <p>Meniti Sejarah, Membuka Jalan untuk Masa Depan</p>
+    </header>
+
+    <div class="container">
+        <section id="introduction">
+            <h2>Penjelasan Kabinet</h2>
+            <p>Kabinet Budiutomo adalah tonggak sejarah dalam perjalanan organisasi ini. Dengan semangat perjuangan dan inovasi, kabinet ini hadir untuk membawa perubahan positif bagi masyarakat.</p>
+        </section>
+
+        <section id="structure">
+            <h2>Struktur Kabinet</h2>
+            <div class="grid">
+                <div class="card">
+                    <img src="/images/leader.jpg" alt="Ketua Kabinet">
+                    <h3>Ketua Kabinet</h3>
+                    <p>Nama Ketua Kabinet</p>
+                </div>
+                <div class="card">
+                    <img src="/images/vice_leader.jpg" alt="Wakil Ketua Kabinet">
+                    <h3>Wakil Ketua Kabinet</h3>
+                    <p>Nama Wakil Ketua Kabinet</p>
+                </div>
+                <div class="card">
+                    <img src="/images/secretary.jpg" alt="Sekretaris">
+                    <h3>Sekretaris</h3>
+                    <p>Nama Sekretaris</p>
+                </div>
+                <div class="card">
+                    <img src="/images/treasurer.jpg" alt="Bendahara">
+                    <h3>Bendahara</h3>
+                    <p>Nama Bendahara</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="documentation" class="documentation">
+            <h2>Dokumentasi</h2>
+            <div class="grid">
+                <img src="/images/event1.jpg" alt="Event 1">
+                <img src="/images/event2.jpg" alt="Event 2">
+                <img src="/images/event3.jpg" alt="Event 3">
+                <img src="/images/event4.jpg" alt="Event 4">
+            </div>
+        </section>
+
+        <section id="programs">
+            <h2>Program Kerja</h2>
+            <div class="grid">
+                <div class="card">
+                    <h3>Program 1</h3>
+                    <p>Deskripsi singkat tentang program kerja ini.</p>
+                </div>
+                <div class="card">
+                    <h3>Program 2</h3>
+                    <p>Deskripsi singkat tentang program kerja ini.</p>
+                </div>
+                <div class="card">
+                    <h3>Program 3</h3>
+                    <p>Deskripsi singkat tentang program kerja ini.</p>
+                </div>
+                <div class="card">
+                    <h3>Program 4</h3>
+                    <p>Deskripsi singkat tentang program kerja ini.</p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    
+</body>
+</html>

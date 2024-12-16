@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="shortcut icon" type="image/icon" href="./image/logo himpunan.png"/>
+
+    <title>Orbit Kabinet</title>
+    <style>
+        /* General Styling */
+        body {
+            margin: 0;
+            background: #0b0e17;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+            color: white;
+            font-family: 'Exo 2', sans-serif;
+            opacity: 0;
+            animation: fadeIn 2s forwards;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        .container {
+            position: relative;
+            width: 2400px;
+            height: 2400px;
+            transform-origin: center;
+            transform: scale(0.5);
+        }
+
+        .center {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 150px;
+            height: 150px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 50%;
+            background: radial-gradient(circle, #ffffff, #ffffff);
+            box-shadow: 0 0 50px #ffffff;
+            text-align: center;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .orbit {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            border: 1px dashed rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 1; /* Orbit di bawah */
+            pointer-events: none; /* Orbit tidak bisa menghalangi klik */
+        }
+
+        .kabinet {
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-size: 0.7rem;
+            transition: transform 0.3s ease-in-out;
+            cursor: pointer;
+            z-index: 10; /* Planet di atas */
+            pointer-events: auto; /* Pastikan planet bisa menerima klik */
+        }
+
+        .kabinet:hover {
+            transform: scale(1.5);
+            box-shadow: 0 0 15px #fff;
+        }
+
+        /* Loading Screen */
+        .loading-screen {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .loading-screen.active {
+            display: flex;
+        }
+
+        .spinner {
+            width: 50px;
+            height: 50px;
+            border: 6px solid rgba(255, 255, 255, 0.3);
+            border-top: 6px solid white;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            from {
+                transform: rotate(0deg);
+            }
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* Wrapper Styling */
+        .wrapper {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            width: 90%;
+            height: 80%;
+            max-width: 600px;
+            max-height: 90%;
+            background: linear-gradient(145deg, #1c1c1c, #232323);
+            color: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            padding: 20px;
+            text-align: center;
+            animation: scaleUp 0.4s forwards ease-out;
+            z-index: 2000;
+            backdrop-filter: blur(10px); /* Efek blur latar belakang */
+        }
+
+        @keyframes scaleUp {
+            from {
+                opacity: 0;
+                transform: translate(-50%, -50%) scale(0.8);
+            }
+            to {
+                opacity: 1;
+                transform: translate(-50%, -50%) scale(1);
+            }
+        }
+
+        .wrapper img {
+            width: 100px;
+            margin-bottom: 10px;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: transparent;
+            color: white;
+            border: none;
+            font-size: 1.2rem;
+            cursor: pointer;
+        }
+
+        .wrapper textarea {
+            width: 100%;
+            height: 60px;
+            border-radius: 10px;
+            border: none;
+            padding: 10px;
+            margin: 10px 0;
+        }
+
+        .wrapper button {
+            background: linear-gradient(145deg, #152758, #203b7a);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            padding: 10px 20px;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .wrapper button:hover {
+            transform: scale(1.1);
+            box-shadow: 0 5px 15px rgba(21, 39, 88, 0.5);
+        }
+
+        .landscape-warning {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.9);
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    z-index: 9999;
+    font-size: 1.5rem;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+
+    </style>
+</head>
+<body>
+
+    <div class="landscape-warning" id="landscape-warning">
+        Silakan putar perangkat Anda ke mode <strong>landscape</strong> untuk pengalaman terbaik.
+    </div>
+    
+    <div class="container">
+        <div class="center" id="sun">
+            <img src="/image/logo himpunan.png" alt="Matahari">
+        </div>
+    </div>
+
+    <div class="loading-screen" id="loading-screen">
+        <div class="spinner"></div>
+    </div>
+
+    <div class="wrapper" id="info-wrapper">
+        <button class="close-btn" id="close-wrapper">&times;</button>
+        <img src="/image/logo himpunan.png" alt="Logo Himpunan">
+        <h2>Himpunan Mahasiswa Informatika</h2>
+        <p>Selamat datang di halaman orbit kabinet! Informatika adalah himpunan mahasiswa yang bertujuan meningkatkan inovasi dan kolaborasi antar anggotanya.</p>
+        <p><strong>Kontak:</strong> 0812-3456-7890</p>
+        <p><strong>EMAIL:</strong> hmif@unand.ac.id</p>
+        <textarea placeholder="Tulis saran Anda di sini..."></textarea>
+        <button>Kirim Saran</button>
+    </div>
+
+    <script>
+        const container = document.querySelector('.container');
+        const loadingScreen = document.getElementById('loading-screen');
+        const wrapper = document.getElementById('info-wrapper');
+        const closeWrapper = document.getElementById('close-wrapper');
+        const sun = document.getElementById('sun');
+
+
+        function checkOrientation() {
+    const warning = document.getElementById('landscape-warning');
+    if (window.innerHeight > window.innerWidth) {
+        // Jika perangkat dalam mode portrait
+        warning.style.display = 'flex';
+    } else {
+        // Jika perangkat dalam mode landscape
+        warning.style.display = 'none';
+    }
+}
+
+// Periksa orientasi saat halaman dimuat
+checkOrientation();
+
+// Tambahkan event listener untuk mendeteksi perubahan orientasi
+window.addEventListener('resize', checkOrientation);
+
+
+        
+        sun.addEventListener('click', () => {
+            wrapper.style.display = 'block';
+        });
+
+        closeWrapper.addEventListener('click', () => {
+            wrapper.style.display = 'none';
+        });
+
+        function createOrbit(orbitSize, kabinetId, color, speed, name, file = null) {
+            const orbit = document.createElement('div');
+            orbit.className = 'orbit';
+            orbit.style.width = `${orbitSize}px`;
+            orbit.style.height = `${orbitSize}px`;
+            container.appendChild(orbit);
+
+            const kabinet = document.createElement('div');
+            kabinet.className = 'kabinet';
+            kabinet.id = kabinetId;
+            kabinet.style.background = `radial-gradient(circle, ${color[0]}, ${color[1]})`;
+            kabinet.setAttribute('data-name', name);
+
+            const nameTag = document.createElement('div');
+            nameTag.style.position = 'absolute';
+            nameTag.style.top = '-20px';
+            nameTag.style.left = '50%';
+            nameTag.style.transform = 'translateX(-50%)';
+            nameTag.style.color = 'white';
+            nameTag.style.fontSize = '0.7rem';
+            nameTag.textContent = name;
+            kabinet.appendChild(nameTag);
+            orbit.appendChild(kabinet);
+
+            let angle = Math.random() * Math.PI * 2;
+            const centerX = orbitSize / 2;
+            const centerY = orbitSize / 2;
+            const radius = orbitSize / 2;
+
+            function move() {
+                angle += speed;
+                const x = centerX + radius * Math.cos(angle) - 15;
+                const y = centerY + radius * Math.sin(angle) - 15;
+
+                kabinet.style.left = `${x}px`;
+                kabinet.style.top = `${y}px`;
+                requestAnimationFrame(move);
+            }
+            move();
+
+            kabinet.addEventListener('click', () => {
+                if (file) {
+                    loadingScreen.classList.add('active');
+                    setTimeout(() => {
+                        window.location.href = file;
+                    }, 1500);
+                } else {
+                    alert(`Kabinet ${name} tidak memiliki laman.`);
+                }
+            });
+        }
+
+        const colors = [
+            ['#6bdcff', '#0066cc'],
+            ['#ffa07a', '#ff4500'],
+            ['#7fffd4', '#20b2aa'],
+            ['#ffcccb', '#ff6347'],
+            ['#98fb98', '#2e8b57'],
+            ['#87cefa', '#4682b4'],
+            ['#dda0dd', '#8b008b'],
+            ['#f0e68c', '#b8860b'],
+            ['#e6e6fa', '#483d8b'],
+            ['#ffb6c1', '#ff69b4'],
+        ];
+
+        const names = [
+            'BUDIUTOMO', 'EDELWISE', 'Kabinet 3', 'Kabinet 4', 'Kabinet 5',
+            'Kabinet 6', 'Kabinet 7', 'Kabinet 8', 'Kabinet 9', 'Kabinet 10',
+        ];
+
+        const files = [
+            './kabinet/budiutomo.html', './kabinet/edelwise.html', '', '', '', '', '', '', '', ''
+        ];
+
+        for (let i = 0; i < 10; i++) {
+            createOrbit(300 + i * 100, `kabinet${i + 1}`, colors[i % colors.length], 0.001 + i * 0.0001, names[i], files[i]);
+        }
+    </script>
+</body>
+</html>

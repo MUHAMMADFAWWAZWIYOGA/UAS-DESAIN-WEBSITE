@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kabinet Edelwise</title>
+    <style>
+        body {
+            margin: 0;
+            background: linear-gradient(135deg, #152758, #ffffff);
+            font-family: 'Arial', sans-serif;
+            color: black;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .wrapper {
+            width: 90%;
+            height: 90%;
+            background: #e6e6e6;
+            border-radius: 20px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            display: flex;
+            flex-direction: column;
+            padding: 20px;
+        }
+
+        header {
+            background: #152758;
+            color: black;
+            width: 100%;
+            text-align: center;
+            padding: 15px;
+            border-radius: 15px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            animation: fadeInDown 1s ease-out;
+        }
+
+        .content {
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+
+        .row {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+        .column {
+            flex: 1;
+            background: #f9f9f9;
+            border-radius: 15px;
+            padding: 15px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            color: #152758;
+        }
+
+        .grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+        }
+
+        .card {
+            background: #152758;
+            color: white;
+            border-radius: 15px;
+            width: 150px;
+            height: 150px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .card:hover {
+            transform: scale(1.1);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+        }
+
+        footer {
+            background: #152758;
+            width: 100%;
+            text-align: center;
+            padding: 10px;
+            color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            margin-top: 20px;
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .row {
+                flex-direction: column;
+            }
+
+            .card {
+                width: 120px;
+                height: 120px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+        <header>
+            <h1>Kabinet Edelwise</h1>
+            <p>Keindahan dan Harmoni dalam Kepemimpinan</p>
+        </header>
+
+        <div class="content">
+            <section class="row">
+                <div class="column">
+                    <h2>Kepengurusan</h2>
+                    <div class="grid">
+                        <div class="card">
+                            <h3>Ketua</h3>
+                            <p>Nama Ketua</p>
+                        </div>
+                        <div class="card">
+                            <h3>Wakil Ketua</h3>
+                            <p>Nama Wakil Ketua</p>
+                        </div>
+                        <div class="card">
+                            <h3>Sekretaris</h3>
+                            <p>Nama Sekretaris</p>
+                        </div>
+                        <div class="card">
+                            <h3>Bendahara</h3>
+                            <p>Nama Bendahara</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="column">
+                    <h2>Program Unggulan</h2>
+                    <div class="grid">
+                        <div class="card">
+                            <h3>Program 1</h3>
+                            <p>Keterangan singkat program.</p>
+                        </div>
+                        <div class="card">
+                            <h3>Program 2</h3>
+                            <p>Keterangan singkat program.</p>
+                        </div>
+                        <div class="card">
+                            <h3>Program 3</h3>
+                            <p>Keterangan singkat program.</p>
+                        </div>
+                        <div class="card">
+                            <h3>Program 4</h3>
+                            <p>Keterangan singkat program.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section>
+                <h2>Dokumentasi</h2>
+                <div class="grid">
+                    <div class="card">
+                        <h3>Dokumen 1</h3>
+                    </div>
+                    <div class="card">
+                        <h3>Dokumen 2</h3>
+                    </div>
+                    <div class="card">
+                        <h3>Dokumen 3</h3>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+       
+    </div>
+</body>
+</html>
